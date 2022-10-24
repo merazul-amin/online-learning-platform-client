@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../contexts/UserContext/UserContext';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { toast } from 'react-toastify';
 const Register = () => {
     const { createUser } = useContext(AuthContext);
 
@@ -17,6 +18,7 @@ const Register = () => {
         createUser(email, password)
             .then((userCredential) => {
                 // Signed in 
+                toast.success('Successfully Account Created')
                 const user = userCredential.user;
                 console.log(user);
             })
@@ -52,12 +54,15 @@ const Register = () => {
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label className='fw-bold fs-3'>Password</Form.Label>
                 <Form.Control name='password' type="password" placeholder="Password" />
+                <Form.Text className="text-muted">
+                    err
+                </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
             <Button variant="primary" type="submit">
-                Submit
+                Register
             </Button>
         </Form>
     );
