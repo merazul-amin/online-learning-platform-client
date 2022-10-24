@@ -5,14 +5,17 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-
+import { Link } from "react-router-dom";
+import './HeaderNav.module.css';
 const HeaderNav = () => {
     const { user } = useContext(AuthContext);
     console.log(user);
     return (
         <Navbar bg="info" expand="lg">
             <Container fluid>
-                <Navbar.Brand href="#">Online Learning</Navbar.Brand>
+                <Navbar.Brand >
+                    <Link to='/'><span className='fs-2'>Online Learning</span></Link>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -20,9 +23,9 @@ const HeaderNav = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Home</Nav.Link>
-                        <Nav.Link href="#action2">Courses</Nav.Link>
-                        <Nav.Link href="#action2">Blog</Nav.Link>
+                        <Nav.Link><Link to='/'>Home</Link></Nav.Link>
+                        <Nav.Link><Link to='/courses'>Courses</Link></Nav.Link>
+                        <Nav.Link><Link to='/blogs'>Blogs</Link></Nav.Link>
 
                     </Nav>
                     <Form className="d-flex">
