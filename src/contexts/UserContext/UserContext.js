@@ -12,9 +12,11 @@ const UserContext = ({ children }) => {
     //Register with email and password;
 
     const createUser = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
     const logIn = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
@@ -22,6 +24,7 @@ const UserContext = ({ children }) => {
     // Log Out function
 
     const logOut = () => {
+        setLoading(true);
         return signOut(auth);
     }
 

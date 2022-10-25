@@ -3,12 +3,15 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../../contexts/UserContext/UserContext';
 import { toast } from 'react-toastify';
+import { useLocation, useNavigate } from 'react-router-dom';
 const Login = () => {
     const { logIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
-
         const email = form.email.value;
         const password = form.password.value;
 
@@ -18,8 +21,7 @@ const Login = () => {
                 toast.success('Successfully Logged in');
                 const user = userCredential.user;
                 console.log(user)
-
-                // ...
+                navigate(from, { replace: true });
             })
             .catch((error) => {
                 console.log(error)
