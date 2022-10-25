@@ -44,8 +44,9 @@ const HeaderNav = () => {
                             <button onClick={handleLogOut} className='btn btn-danger'>LogOut</button>
                             :
                             <>
-                                <Link to='/login'><button className="btn btn-success mx-1">Log In</button></Link>
-                                <Link to='/register'> <button className="btn btn-warning">Register</button></Link>
+                                <Link to='/login'><button className="btn btn-success mx-2">Log In</button></Link>
+
+                                <Link to='/register'><button className="btn btn-warning">Register</button></Link>
                             </>
                         }
                     </div>

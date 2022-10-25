@@ -19,17 +19,17 @@ const routes = createBrowserRouter([
             { path: '/blogs', element: <Blogs></Blogs> },
             {
                 path: '/courses',
-                loader: () => fetch('http://localhost:5000/courses'),
+                loader: () => fetch('https://assignment-10-server-theta.vercel.app/courses'),
                 element: <AllCourses></AllCourses>
             },
             {
                 path: '/courses/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`),
+                loader: ({ params }) => fetch(`https://assignment-10-server-theta.vercel.app/courses/${params.id}`),
                 element: <CourseDetails></CourseDetails>
             },
             {
                 path: '/checkout/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/checkout/${params.id}`),
+                loader: ({ params }) => fetch(`https://assignment-10-server-theta.vercel.app/checkout/${params.id}`),
                 element: <PrivateRoute> <Checkout></Checkout></PrivateRoute>
             }
 
