@@ -4,17 +4,28 @@ import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../../contexts/UserContext/UserContext';
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { FaGoogle, FaGithub } from "react-icons/fa";
+import { getAuth, GithubAuthProvider, signInWithPopup } from 'firebase/auth';
+import app from '../../../firebase/firebase.init';
+
+const auth = getAuth(app);
+const githubProvider = new GithubAuthProvider();
+
+
 const Login = () => {
+
     const { logIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
 
+        // log in with email and password
         logIn(email, password)
             .then((userCredential) => {
                 // Signed in 
@@ -28,33 +39,58 @@ const Login = () => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
             });
+    }
 
+    // log in with github
 
+    const handleGithubLogin = () => {
+        signInWithPopup(auth, githubProvider)
+            .then((result) => {
+                // The signed-in user info.
+                const user = result.user;
+                console.log(user);
+                navigate(from, { replace: true });
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GithubAuthProvider.credentialFromError(error);
+                // ...
+            });
     }
     return (
-        <Form className='w-50 mx-auto' onSubmit={handleSubmit}>
+        <div className='w-50 mx-auto'>
+            <Form className='w-75 mx-auto' onSubmit={handleSubmit}>
 
-            {/* Email input */}
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label className='fw-bold fs-3'>Email</Form.Label>
-                <Form.Control name='email' type="email" placeholder="Enter Your Email" />
-            </Form.Group>
+                {/* Email input */}
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label className='fw-bold fs-3'>Email</Form.Label>
+                    <Form.Control name='email' type="email" placeholder="Enter Your Email" />
+                </Form.Group>
 
-            {/* Password input */}
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label className='fw-bold fs-3'>Password</Form.Label>
-                <Form.Control name='password' type="password" placeholder="Password" />
-                <Form.Text className="text-muted">
-                    error
-                </Form.Text>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-                Log In
-            </Button>
-        </Form>
+                {/* Password input */}
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label className='fw-bold fs-3'>Password</Form.Label>
+                    <Form.Control name='password' type="password" placeholder="Password" />
+                    <Form.Text className="text-muted">
+                        error
+                    </Form.Text>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Check type="checkbox" label="Check me out" />
+                </Form.Group>
+                <div>
+                    <button style={{ color: 'white', backgroundColor: '#151a1e', fontSize: '20px' }} className='btn w-100 mx-auto d-block '>Log In by Google <FaGoogle /> </button>
+                    <button onClick={handleGithubLogin} style={{ color: 'white', fontSize: '20px' }} className='btn btn-primary w-100 mx-auto d-block my-3'>Log In by Github <FaGithub /> </button>
+                </div>
+
+                <Button style={{ fontSize: '20px' }} className=' w-100 mx-auto d-block' variant="success" type="submit">Log In</Button>
+            </Form>
+        </div>
+
     );
 };
 

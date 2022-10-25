@@ -13,10 +13,10 @@ const AllCourses = () => {
                     <div >
                         <Row xs={1} md={2} className="g-4">
                             {
-                                courses.map(course =>
+                                courses.map((course, index) =>
                                     <SingleCourse
                                         course={course}
-                                        key={course.id}
+                                        key={index}
                                     ></SingleCourse>)
                             }
                         </Row>

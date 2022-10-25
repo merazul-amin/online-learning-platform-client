@@ -16,12 +16,12 @@ const CourseDetails = () => {
                 <Card.Img variant="top" style={{ height: '50vh' }} src={img} />
                 <Card.Body>
                     <Card.Title><h1> {name}</h1> </Card.Title>
-                    <Card.Text>
+                    <>
                         <h4>What you will learn from here?</h4>
 
                         <div className='p-3' style={{ width: '80%', margin: 'auto', border: '1px solid black' }}>
                             {
-                                toLearn.map(text => <li >{text}</li>)
+                                toLearn.map((text, index) => <li key={index}>{text}</li>)
                             }
                         </div>
                         <div className='my-3'>
@@ -30,7 +30,7 @@ const CourseDetails = () => {
                                 <p className='fs-4'>Duration: {duration}</p>
                             </div>
                         </div>
-                    </Card.Text>
+                    </>
                     <Link to={`/checkout/${id}`}> <Button variant="primary">Get premium access</Button></Link>
                 </Card.Body>
             </Card>

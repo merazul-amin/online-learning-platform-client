@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import './HeaderNav.module.css';
 
 import { toast } from 'react-toastify';
@@ -25,7 +25,7 @@ const HeaderNav = () => {
         <Navbar bg="info" expand="lg">
             <Container fluid>
                 <Navbar.Brand >
-                    <Link to='/'><span className='fs-2'>Online Learning</span></Link>
+                    <Link style={{ textDecoration: 'none', fontWeight: 'bold' }} to='/'><span className='fs-2'>Online Learning</span></Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
@@ -34,9 +34,11 @@ const HeaderNav = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link><Link to='/'>Home</Link></Nav.Link>
-                        <Nav.Link><Link to='/courses'>Courses</Link></Nav.Link>
-                        <Nav.Link><Link to='/blogs'>Blogs</Link></Nav.Link>
+                        <><NavLink style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold', margin: '0 10px' }} to='/'>Home</NavLink></>
+
+                        <><NavLink style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold', margin: '0 10px' }} to='/courses'>Courses</NavLink></>
+
+                        <><NavLink style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold', margin: '0 10px' }} to='/blogs'>Blogs</NavLink></>
 
                     </Nav>
                     <div>
