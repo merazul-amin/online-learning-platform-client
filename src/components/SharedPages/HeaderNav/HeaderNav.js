@@ -7,8 +7,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, NavLink } from "react-router-dom";
 import './HeaderNav.module.css';
-
+import Image from 'react-bootstrap/Image'
 import { toast } from 'react-toastify';
+import { FaUserAlt } from 'react-icons/fa';
+
+
 const HeaderNav = () => {
     const { user, logOut } = useContext(AuthContext);
 
@@ -28,6 +31,7 @@ const HeaderNav = () => {
                     <Link style={{ textDecoration: 'none', fontWeight: 'bold' }} to='/'><span className='fs-2'>Online Learning</span></Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
+
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
                         className="me-auto my-2 my-lg-0"
@@ -41,6 +45,21 @@ const HeaderNav = () => {
                         <><NavLink style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold', margin: '0 10px' }} to='/blogs'>Blogs</NavLink></>
 
                     </Nav>
+                    <div className='mx-3 mt-2'>
+                        {
+                            user && user?.uid ?
+                                <>
+                                    <p style={{ cursor: 'pointer' }} title={user?.displayName}>
+                                        <Image roundedCircle style={{ height: "40px" }} src={user.photoURL}></Image>
+                                    </p>
+                                </>
+                                :
+                                <>
+                                    <FaUserAlt />
+                                </>
+
+                        }
+                    </div>
                     <div>
                         {user && user?.uid ?
                             <button onClick={handleLogOut} className='btn btn-danger'>LogOut</button>

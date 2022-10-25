@@ -4,16 +4,16 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { toast } from 'react-toastify';
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, setNameImage } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
         const userName = form.name.value;
-        const photUrl = form.photo.value;
+        const photoUrl = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(userName, photUrl, email, password);
+        console.log(userName, photoUrl, email, password);
 
         createUser(email, password)
             .then((userCredential) => {
@@ -21,6 +21,17 @@ const Register = () => {
                 toast.success('Successfully Account Created')
                 const user = userCredential.user;
                 console.log(user);
+
+                // update name and phot url
+                setNameImage(userName, photoUrl)
+                    .then(() => {
+                        // Profile updated!
+                        // ...
+                        console.log('profile updated')
+                    }).catch((error) => {
+                        // An error occurred
+                        // ...
+                    });
             })
             .catch((error) => {
                 console.log(error)
