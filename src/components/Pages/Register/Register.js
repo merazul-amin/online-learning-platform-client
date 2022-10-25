@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/UserContext/UserContext';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { toast } from 'react-toastify';
 const Register = () => {
     const { createUser, setNameImage } = useContext(AuthContext);
-
+    const [uiError, setUiError] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -27,17 +27,16 @@ const Register = () => {
                     .then(() => {
                         // Profile updated!
                         // ...
-                        console.log('profile updated')
                     }).catch((error) => {
                         // An error occurred
                         // ...
+                        setUiError(error);
                     });
             })
             .catch((error) => {
                 console.log(error)
-                const errorCode = error.code;
                 const errorMessage = error.message;
-
+                setUiError(errorMessage);
             });
     }
     return (
@@ -66,7 +65,7 @@ const Register = () => {
                 <Form.Label className='fw-bold fs-3'>Password</Form.Label>
                 <Form.Control name='password' type="password" placeholder="Password" />
                 <Form.Text className="text-muted">
-                    err
+                    <span className='text-danger'>{uiError}</span>
                 </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">

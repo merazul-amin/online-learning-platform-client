@@ -1,18 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../../contexts/UserContext/UserContext';
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { getAuth, GithubAuthProvider, signInWithPopup } from 'firebase/auth';
+import { getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import app from '../../../firebase/firebase.init';
 
 const auth = getAuth(app);
 const githubProvider = new GithubAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
 
 const Login = () => {
+    const [uiError, setUiError] = useState('');
 
     const { logIn } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -32,12 +34,15 @@ const Login = () => {
                 toast.success('Successfully Logged in');
                 const user = userCredential.user;
                 console.log(user)
+                setUiError('');
                 navigate(from, { replace: true });
             })
             .catch((error) => {
                 console.log(error)
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                console.log(errorMessage)
+                setUiError(errorMessage);
             });
     }
 
@@ -49,16 +54,27 @@ const Login = () => {
                 // The signed-in user info.
                 const user = result.user;
                 console.log(user);
+                setUiError('');
                 navigate(from, { replace: true });
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = GithubAuthProvider.credentialFromError(error);
+                setUiError(errorMessage);
+            });
+    }
+    const handleGoogleLogin = () => {
+        signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
                 // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorMessage);
+                setUiError(errorMessage);
             });
     }
     return (
@@ -76,19 +92,23 @@ const Login = () => {
                     <Form.Label className='fw-bold fs-3'>Password</Form.Label>
                     <Form.Control name='password' type="password" placeholder="Password" />
                     <Form.Text className="text-muted">
-                        error
+                        <span className='text-danger fw-bold'>{uiError}</span>
                     </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group>
-                <div>
-                    <button style={{ color: 'white', backgroundColor: '#151a1e', fontSize: '20px' }} className='btn w-100 mx-auto d-block '>Log In by Google <FaGoogle /> </button>
-                    <button onClick={handleGithubLogin} style={{ color: 'white', fontSize: '20px' }} className='btn btn-primary w-100 mx-auto d-block my-3'>Log In by Github <FaGithub /> </button>
-                </div>
+
 
                 <Button style={{ fontSize: '20px' }} className=' w-100 mx-auto d-block' variant="success" type="submit">Log In</Button>
             </Form>
+
+            <div className='w-75 mx-auto mt-3'>
+                <div>
+                    <button onClick={handleGoogleLogin} style={{ color: 'white', backgroundColor: '#151a1e', fontSize: '20px' }} className='btn w-100 mx-auto d-block '>Continue With Google <FaGoogle /> </button>
+                    <button onClick={handleGithubLogin} style={{ color: 'white', fontSize: '20px' }} className='btn btn-primary w-100 mx-auto d-block my-3'>Continue With Github <FaGithub /> </button>
+                </div>
+            </div>
         </div>
 
     );
