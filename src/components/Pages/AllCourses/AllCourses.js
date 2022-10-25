@@ -1,29 +1,32 @@
 import React from 'react';
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import SingleCourse from '../SingleCourse/SingleCourse';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col'
+import Col from 'react-bootstrap/Col';
+import CoursesNav from '../CoursesNav/CoursesNav';
 const AllCourses = () => {
     const courses = useLoaderData();
     return (
-        <Row className='w-75 mx-auto'>
-            <Col lg='10'>
-                <div >
-                    <Row xs={1} md={2} className="g-4">
-                        {
-                            courses.map(course =>
-                                <SingleCourse
-                                    course={course}
-                                    key={course.id}
-                                ></SingleCourse>)
-                        }
-                    </Row>
-                </div>
-            </Col>
-            <Col lg='2 border'>
-                <h1>Right nav</h1>
-            </Col>
-        </Row>
+        <div style={{ width: '95%', margin: 'auto' }}>
+            <Row >
+                <Col md='10'>
+                    <div >
+                        <Row xs={1} md={2} className="g-4">
+                            {
+                                courses.map(course =>
+                                    <SingleCourse
+                                        course={course}
+                                        key={course.id}
+                                    ></SingleCourse>)
+                            }
+                        </Row>
+                    </div>
+                </Col>
+                <Col className='d-none d-md-block' md='2 border'>
+                    <CoursesNav courses={courses}></CoursesNav>
+                </Col>
+            </Row>
+        </div>
 
     );
 };
