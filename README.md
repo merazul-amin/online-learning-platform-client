@@ -1,14 +1,14 @@
 # Getting Started with My Project
 
 
-## Project Name: Programming Quiz Contest
+## Project Name: Online Learning Platform
 
 
 ### `Project Features`
 - Clear and Fresh Look
 - Everything is good looking.
-- Website is all about quiz contest.
-- All the quizzes are about programming.
+- Website is all about online courses.
+- All the courses about technology related.
 
 
 ### Important Links
