@@ -68,6 +68,7 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, { replace: true });
                 // ...
             }).catch((error) => {
                 // Handle Errors here.

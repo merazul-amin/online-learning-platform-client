@@ -1,16 +1,14 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../contexts/UserContext/UserContext';
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, NavLink } from "react-router-dom";
-import './HeaderNav.module.css';
+import './HeaderNav.css';
 import Image from 'react-bootstrap/Image'
 import { toast } from 'react-toastify';
 import { FaUserAlt } from 'react-icons/fa';
-
+import { ImCompass } from "react-icons/im";
 
 const HeaderNav = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -25,10 +23,11 @@ const HeaderNav = () => {
             });
     }
     return (
-        <Navbar bg="info" expand="lg">
+        <Navbar style={{ backgroundColor: '#0B3D60' }} expand="lg">
             <Container fluid>
                 <Navbar.Brand >
-                    <Link style={{ textDecoration: 'none', fontWeight: 'bold' }} to='/'><span className='fs-2'>Online Learning</span></Link>
+
+                    <Link style={{ textDecoration: 'none', fontWeight: 'bold', color: 'white' }} to='/'><span className='fs-2'>  <ImCompass />Online Learning</span></Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
 
@@ -38,11 +37,14 @@ const HeaderNav = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <><NavLink style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold', margin: '0 10px' }} to='/'>Home</NavLink></>
+                        <><NavLink style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold', margin: '0 10px' }} to='/'>Home</NavLink></>
 
-                        <><NavLink style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold', margin: '0 10px' }} to='/courses'>Courses</NavLink></>
+                        <><NavLink style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold', margin: '0 10px' }} to='/courses'>Courses</NavLink></>
 
-                        <><NavLink style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold', margin: '0 10px' }} to='/blogs'>Blogs</NavLink></>
+                        <><NavLink style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold', margin: '0 10px' }} to='/blogs'>Blogs</NavLink></>
+                        <><NavLink style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold', margin: '0 10px' }} to='/'>FAQ</NavLink></>
+                        <><NavLink style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold', margin: '0 10px' }} to='/'>About Us</NavLink></>
+                        <><NavLink style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold', margin: '0 10px' }} to='/'>Contact Us</NavLink></>
 
                     </Nav>
                     <div className='mx-3 mt-2'>
@@ -55,7 +57,7 @@ const HeaderNav = () => {
                                 </>
                                 :
                                 <>
-                                    <FaUserAlt />
+                                    <p style={{ color: 'white' }}><FaUserAlt /></p>
                                 </>
 
                         }
