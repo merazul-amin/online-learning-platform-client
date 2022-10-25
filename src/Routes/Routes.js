@@ -4,6 +4,7 @@ import AllCourses from "../components/Pages/AllCourses/AllCourses";
 import Blogs from "../components/Pages/Blogs/Blogs";
 import Checkout from "../components/Pages/Checkout/Checkout";
 import CourseDetails from "../components/Pages/CourseDetails/CourseDetails";
+import ErrorPage from "../components/Pages/ErrorPage/ErrorPage";
 import Home from "../components/Pages/Home/Home";
 import Login from "../components/Pages/Login/Login";
 import Register from "../components/Pages/Register/Register";
@@ -11,7 +12,9 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const routes = createBrowserRouter([
     {
-        path: '/', element: <Layout></Layout>,
+        path: '/',
+        element: <Layout></Layout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             { path: '/', element: <Home></Home> },
             { path: '/login', element: <Login></Login> },
