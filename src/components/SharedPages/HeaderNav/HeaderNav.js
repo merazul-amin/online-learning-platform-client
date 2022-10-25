@@ -7,9 +7,20 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from "react-router-dom";
 import './HeaderNav.module.css';
+
+import { toast } from 'react-toastify';
 const HeaderNav = () => {
-    const { user } = useContext(AuthContext);
-    console.log(user);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                // Sign-out successful.
+                toast.success('Successfully Logged Out')
+            }).catch((error) => {
+                // An error happened.
+            });
+    }
     return (
         <Navbar bg="info" expand="lg">
             <Container fluid>
@@ -28,15 +39,16 @@ const HeaderNav = () => {
                         <Nav.Link><Link to='/blogs'>Blogs</Link></Nav.Link>
 
                     </Nav>
-                    <Form className="d-flex">
-                        <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button variant="outline-success">Search</Button>
-                    </Form>
+                    <div>
+                        {user && user?.uid ?
+                            <button onClick={handleLogOut} className='btn btn-danger'>LogOut</button>
+                            :
+                            <>
+                                <Link to='/login'><button className="btn btn-success mx-1">Log In</button></Link>
+                                <Link to='/register'> <button className="btn btn-warning">Register</button></Link>
+                            </>
+                        }
+                    </div>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
