@@ -14,7 +14,11 @@ const routes = createBrowserRouter([
             { path: '/login', element: <Login></Login> },
             { path: '/register', element: <Register></Register> },
             { path: '/blogs', element: <Blogs></Blogs> },
-            { path: '/courses', element: <AllCourses></AllCourses> }
+            {
+                path: '/courses',
+                loader: () => fetch('http://localhost:5000/courses'),
+                element: <AllCourses></AllCourses>
+            }
 
         ]
     }
