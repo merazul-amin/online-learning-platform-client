@@ -1,39 +1,39 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+import PDFContent from './PDFContent';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
 
 const CourseDetails = () => {
     const course = useLoaderData();
     const { name, img, price, duration, toLearn, id } = course;
+
+    const printPdf = () => {
+        console.log('clicked');
+        const input = document.getElementById("course-details-container");
+
+        html2canvas(input, { logging: true, letterRendering: 1, useCORS: true })
+            .then(canvas => {
+                const imgWidth = 208;
+                const imgHeight = canvas.height * imgWidth / canvas.width;
+                const imgData = canvas.toDataURL('img/png');
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                pdf.save(`${name}.pdf`)
+            })
+    }
     return (
         <div style={{ width: '60%', margin: 'auto' }}>
             <div style={{ textAlign: " center" }} className='my-3'>
                 <h3>Course Name: {name}</h3>
-                <button className='btn btn-success'>Download Course Pdf</button>
+                <button onClick={printPdf} className='btn btn-success'>Download Course Pdf</button>
             </div>
-            <Card  >
-                <Card.Img variant="top" style={{ height: '50vh' }} src={img} />
-                <Card.Body>
-                    <Card.Title><h1> {name}</h1> </Card.Title>
-                    <>
-                        <h4>What you will learn from here?</h4>
+            <div id='course-details-container'>
+                <PDFContent course={course}></PDFContent>
+            </div>
 
-                        <div className='p-3' style={{ width: '80%', margin: 'auto', border: '1px solid black' }}>
-                            {
-                                toLearn.map((text, index) => <li key={index}>{text}</li>)
-                            }
-                        </div>
-                        <div className='my-3'>
-                            <div className='d-flex justify-content-around'>
-                                <p className='fs-4'>Price: {price}</p>
-                                <p className='fs-4'>Duration: {duration}</p>
-                            </div>
-                        </div>
-                    </>
-                    <Link to={`/checkout/${id}`}> <Button variant="primary">Get premium access</Button></Link>
-                </Card.Body>
-            </Card>
+
         </div>
     );
 };
