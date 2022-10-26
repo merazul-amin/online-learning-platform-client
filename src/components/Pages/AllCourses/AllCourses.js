@@ -9,7 +9,7 @@ const AllCourses = () => {
     return (
         <div style={{ width: '95%', margin: 'auto' }}>
             <Row className='d-flex flex-column flex-md-row'>
-                <Col md='2' style={{ border: '1px solid black', marginBottom: '20px' }}>
+                <Col md='2' style={{ marginBottom: '20px' }}>
                     <CoursesNav courses={courses}></CoursesNav>
                 </Col>
                 <Col md='10'>
