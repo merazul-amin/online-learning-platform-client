@@ -1,0 +1,17 @@
+.left-side {}
+
+.right-side {}
+
+@media screen and (min-width:768px) {
+    .left-side {
+        width: 50%;
+    }
+
+    .right-side {
+        width: 50%;
+    }
+
+    .home-header {
+        font-size: 50px;
+    }
+}
