@@ -9,6 +9,8 @@
 - Everything is good looking.
 - Website is all about online courses.
 - All the courses about technology related.
+- I used React Bootstrap.
+- For Authentication I used Firebase.
 
 
 ### Important Links

@@ -54,7 +54,7 @@ const HeaderNav = () => {
                         {
                             user && user?.uid ?
                                 <>
-                                    <p style={{ cursor: 'pointer' }} title={user?.displayName}>
+                                    <p style={{ cursor: 'pointer' }} title={user?.displayName ? user?.displayName : "Name not found"}>
                                         <Image roundedCircle style={{ height: "40px" }} src={user.photoURL}></Image>
                                     </p>
                                 </>
