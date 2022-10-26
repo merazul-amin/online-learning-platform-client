@@ -9,6 +9,7 @@ import Image from 'react-bootstrap/Image'
 import { toast } from 'react-toastify';
 import { FaUserAlt } from 'react-icons/fa';
 import { ImCompass } from "react-icons/im";
+import ToggleTheme from '../ToggleTheme/ToggleTheme';
 
 const HeaderNav = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -24,7 +25,7 @@ const HeaderNav = () => {
     }
     return (
         <Navbar style={{ backgroundColor: '#0B3D60' }} expand="lg">
-            <Container fluid>
+            <Container fluid >
                 <Navbar.Brand >
 
                     <Link style={{ textDecoration: 'none', fontWeight: 'bold', color: 'white' }} to='/'><span className='fs-2'>  <ImCompass />Online Learning</span></Link>
@@ -33,7 +34,7 @@ const HeaderNav = () => {
 
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
-                        className="me-auto my-2 my-lg-0"
+                        className="me-auto my-2 my-lg-0 "
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
@@ -47,6 +48,9 @@ const HeaderNav = () => {
                         <><NavLink style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold', margin: '0 10px' }} to='/'>Contact Us</NavLink></>
 
                     </Nav>
+                    <div>
+                        <ToggleTheme label='notification'></ToggleTheme>
+                    </div>
                     <div className='mx-3 mt-2'>
                         {
                             user && user?.uid ?
