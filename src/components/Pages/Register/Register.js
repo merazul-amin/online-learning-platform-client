@@ -3,6 +3,7 @@ import { AuthContext } from '../../../contexts/UserContext/UserContext';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 const Register = () => {
     const { createUser, setNameImage } = useContext(AuthContext);
     const [uiError, setUiError] = useState('');
@@ -69,7 +70,8 @@ const Register = () => {
                 </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
+                <Form.Check type="checkbox" label="Agree with terms and conditions." />
+                <p>Have an account? <Link to='/login'>Log In</Link></p>
             </Form.Group>
             <Button variant="primary" type="submit">
                 Register

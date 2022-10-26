@@ -8,7 +8,10 @@ const AllCourses = () => {
     const courses = useLoaderData();
     return (
         <div style={{ width: '95%', margin: 'auto' }}>
-            <Row >
+            <Row className='d-flex flex-column flex-md-row'>
+                <Col md='2' style={{ border: '1px solid black', marginBottom: '20px' }}>
+                    <CoursesNav courses={courses}></CoursesNav>
+                </Col>
                 <Col md='10'>
                     <div >
                         <Row xs={1} md={2} className="g-4">
@@ -21,9 +24,6 @@ const AllCourses = () => {
                             }
                         </Row>
                     </div>
-                </Col>
-                <Col className='d-none d-md-block' md='2 border'>
-                    <CoursesNav courses={courses}></CoursesNav>
                 </Col>
             </Row>
         </div>

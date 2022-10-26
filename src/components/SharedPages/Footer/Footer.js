@@ -21,7 +21,7 @@ const Footer = () => {
             <div className="footer-center col-md-4 col-sm-6">
                 <div>
                     <i className="fa fa-map-marker"></i>
-                    <p><span>Bananani</span> Dhaka , Bangladesh.y</p>
+                    <p><span>Bananani</span> Dhaka , Bangladesh.</p>
                 </div>
                 <div>
                     <i className="fa fa-phone"></i>

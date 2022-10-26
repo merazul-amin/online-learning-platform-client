@@ -1,6 +1,4 @@
 import React from 'react';
-
-import img from '../../../assets/homeBg.jpg'
 import gif from '../../../assets/homeBg1.gif';
 import './Home.css'
 const Home = () => {

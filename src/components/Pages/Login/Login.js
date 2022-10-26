@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../../contexts/UserContext/UserContext';
 import { toast } from 'react-toastify';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import app from '../../../firebase/firebase.init';
@@ -85,19 +85,20 @@ const Login = () => {
                 {/* Email input */}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label className='fw-bold fs-3'>Email</Form.Label>
-                    <Form.Control name='email' type="email" placeholder="Enter Your Email" />
+                    <Form.Control required name='email' type="email" placeholder="Enter Your Email" />
                 </Form.Group>
 
                 {/* Password input */}
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label className='fw-bold fs-3'>Password</Form.Label>
-                    <Form.Control name='password' type="password" placeholder="Password" />
+                    <Form.Control required name='password' type="password" placeholder="Password" />
                     <Form.Text className="text-muted">
                         <span className='text-danger fw-bold'>{uiError}</span>
                     </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
+
+                    <p>Don't have account? <Link to='/register'>Register</Link></p>
                 </Form.Group>
 
 

@@ -24,7 +24,7 @@ const HeaderNav = () => {
             });
     }
     return (
-        <Navbar style={{ backgroundColor: '#0B3D60' }} expand="lg">
+        <Navbar style={{ backgroundColor: '#0B3D60', marginBottom: '25px' }} expand="lg">
             <Container fluid >
                 <Navbar.Brand >
 
@@ -44,8 +44,7 @@ const HeaderNav = () => {
 
                         <><NavLink style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold', margin: '0 10px' }} to='/blogs'>Blogs</NavLink></>
                         <><NavLink style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold', margin: '0 10px' }} to='/'>FAQ</NavLink></>
-                        <><NavLink style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold', margin: '0 10px' }} to='/'>About Us</NavLink></>
-                        <><NavLink style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold', margin: '0 10px' }} to='/'>Contact Us</NavLink></>
+
 
                     </Nav>
                     <div>
@@ -72,8 +71,7 @@ const HeaderNav = () => {
                             :
                             <>
                                 <Link to='/login'><button className="btn btn-success mx-2">Log In</button></Link>
-
-                                <Link to='/register'><button className="btn btn-warning">Register</button></Link>
+                                <Link to='/register'><button className="btn btn-primary mx-2">Register</button></Link>
                             </>
                         }
                     </div>
