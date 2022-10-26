@@ -7,12 +7,10 @@ import html2canvas from 'html2canvas';
 
 const CourseDetails = () => {
     const course = useLoaderData();
-    const { name, img, price, duration, toLearn, id } = course;
+    const { name } = course;
 
     const printPdf = () => {
-        console.log('clicked');
         const input = document.getElementById("course-details-container");
-
         html2canvas(input, { logging: true, letterRendering: 1, useCORS: true })
             .then(canvas => {
                 const imgWidth = 208;
@@ -32,8 +30,6 @@ const CourseDetails = () => {
             <div id='course-details-container'>
                 <PDFContent course={course}></PDFContent>
             </div>
-
-
         </div>
     );
 };
