@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import gif from '../../../assets/homeBg1.gif';
 import './Home.css'
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
                 <h1 className='text-warning home-header'>Welcome!!</h1>
                 <h5>You are very very welcome in this online learning platform.</h5>
                 <p>This is the world's best online learning platform. Start, switch, or advance your career with more than 5,200 courses, Professional Certificates, and degrees from world-class universities and companies.</p>
+                <Link to='/courses'> <button className='btn btn-primary'>Get Started</button></Link>
 
             </div>
 
