@@ -12,7 +12,7 @@ const PDFContent = ({ course }) => {
                 <>
                     <h4>What you will learn from here?</h4>
 
-                    <div className='p-3' style={{ width: '80%', margin: 'auto', border: '1px solid black' }}>
+                    <div className='p-3' style={{ width: '80%', margin: 'auto' }}>
                         {
                             toLearn.map((text, index) => <li key={index}>{text}</li>)
                         }

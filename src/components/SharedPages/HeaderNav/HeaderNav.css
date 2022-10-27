@@ -1,0 +1,21 @@
+@media screen and (min-width:768px) {
+    .logout-btn {
+        margin-right: 15px;
+    }
+}
+
+@media screen and (min-width:991px) {
+    .navItems-container {
+        width: 50%;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+@media screen and (min-width:1065px) {
+    .navItems-container {
+        width: 60%;
+        display: flex;
+        justify-content: flex-end;
+    }
+}

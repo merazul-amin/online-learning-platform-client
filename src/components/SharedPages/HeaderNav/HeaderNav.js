@@ -30,11 +30,12 @@ const HeaderNav = () => {
 
                     <Link style={{ textDecoration: 'none', fontWeight: 'bold', color: 'white' }} to='/'><span className='fs-2'>  <ImCompass />Online Learning</span></Link>
                 </Navbar.Brand>
+
                 <Navbar.Toggle aria-controls="navbarScroll" />
 
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
-                        className="me-auto my-2 my-lg-0 "
+                        className="me-auto my-2 my-lg-0 navItems-container"
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
@@ -67,7 +68,7 @@ const HeaderNav = () => {
                     </div>
                     <div>
                         {user && user?.uid ?
-                            <button onClick={handleLogOut} className='btn btn-danger'>LogOut</button>
+                            <button onClick={handleLogOut} className='btn logout-btn btn-danger'>LogOut</button>
                             :
                             <>
                                 <Link to='/login'><button className="btn btn-success mx-2">Log In</button></Link>

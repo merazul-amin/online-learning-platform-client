@@ -1,3 +1,7 @@
+.container {
+    margin-left: 0 !important;
+}
+
 .toggle-switch {
     position: relative;
     width: 75px;
