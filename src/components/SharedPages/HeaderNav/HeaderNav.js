@@ -39,7 +39,7 @@ const HeaderNav = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <><NavLink style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold', margin: '0 10px' }} to='/'>Home</NavLink></>
+                        <><NavLink className='hello' style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold', margin: '0 10px' }} to='/'>Home</NavLink></>
 
                         <><NavLink style={{ textDecoration: 'none', color: 'white', fontWeight: 'bold', margin: '0 10px' }} to='/courses'>Courses</NavLink></>
 
