@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import app from '../../../firebase/firebase.init';
+import './Login.css'
 
 const auth = getAuth(app);
 const githubProvider = new GithubAuthProvider();
@@ -32,16 +33,11 @@ const Login = () => {
             .then((userCredential) => {
                 // Signed in 
                 toast.success('Successfully Logged in');
-                const user = userCredential.user;
-                console.log(user)
                 setUiError('');
                 navigate(from, { replace: true });
             })
             .catch((error) => {
-                console.log(error)
-                const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorMessage)
                 setUiError(errorMessage);
             });
     }
@@ -57,8 +53,6 @@ const Login = () => {
                 setUiError('');
                 navigate(from, { replace: true });
             }).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
                 const errorMessage = error.message;
                 setUiError(errorMessage);
             });
@@ -66,20 +60,16 @@ const Login = () => {
     const handleGoogleLogin = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
-                const user = result.user;
-                console.log(user);
+                setUiError('');
                 navigate(from, { replace: true });
                 // ...
             }).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorMessage);
                 setUiError(errorMessage);
             });
     }
     return (
-        <div className='w-50 mx-auto'>
+        <div className='login-page'>
             <Form className='w-75 mx-auto' onSubmit={handleSubmit}>
 
                 {/* Email input */}

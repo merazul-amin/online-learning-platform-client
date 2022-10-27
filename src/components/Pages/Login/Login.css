@@ -1,0 +1,11 @@
+.login-page {
+    width: 98%;
+    margin: auto;
+}
+
+@media screen and (min-width:768px) {
+    .login-page {
+        width: 50%;
+        margin: auto;
+    }
+}

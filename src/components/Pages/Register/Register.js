@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import './Register.css';
 const Register = () => {
     const { createUser, setNameImage } = useContext(AuthContext);
     const [uiError, setUiError] = useState('');
@@ -14,14 +15,12 @@ const Register = () => {
         const photoUrl = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(userName, photoUrl, email, password);
 
         createUser(email, password)
             .then((userCredential) => {
                 // Signed in 
                 toast.success('Successfully Account Created')
-                const user = userCredential.user;
-                console.log(user);
+                setUiError('');
 
                 // update name and phot url
                 setNameImage(userName, photoUrl)
@@ -35,13 +34,12 @@ const Register = () => {
                     });
             })
             .catch((error) => {
-                console.log(error)
                 const errorMessage = error.message;
                 setUiError(errorMessage);
             });
     }
     return (
-        <Form className='w-50 mx-auto' onSubmit={handleSubmit}>
+        <Form className='register-form' onSubmit={handleSubmit}>
 
             {/* Name input */}
             <Form.Group className="mb-3" controlId="formBasicName">

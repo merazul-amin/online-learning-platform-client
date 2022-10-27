@@ -1,0 +1,11 @@
+.register-form {
+    width: 95%;
+    margin: auto;
+}
+
+@media screen and (min-width:768px) {
+    .register-form {
+        width: 50%;
+        margin: auto;
+    }
+}
