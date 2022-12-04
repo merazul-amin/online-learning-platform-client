@@ -7,7 +7,7 @@ const SingleCourse = ({ course }) => {
     const { name, img, id, teacher } = course;
     return (
         <Col>
-            <Card className='text-center my-3'>
+            <Card style={{ color: 'black' }} className='text-center my-3'>
                 <Card.Img variant="top" style={{ height: '300px' }} src={img} />
                 <Card.Body>
                     <Card.Title className='text-center my-2'>{name}</Card.Title>

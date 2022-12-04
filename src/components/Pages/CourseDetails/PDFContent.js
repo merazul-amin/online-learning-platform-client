@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const PDFContent = ({ course }) => {
     const { name, img, price, duration, toLearn, id } = course;
     return (
-        <Card>
+        <Card style={{ color: 'black' }}>
             <Card.Img variant="top" style={{ height: '50vh' }} src={img} />
             <Card.Body>
                 <Card.Title><h1> {name}</h1> </Card.Title>

@@ -11,6 +11,7 @@ import { FaUserAlt } from 'react-icons/fa';
 import { ImCompass } from "react-icons/im";
 import ToggleTheme from '../ToggleTheme/ToggleTheme';
 
+
 const HeaderNav = () => {
     const { user, logOut } = useContext(AuthContext);
 

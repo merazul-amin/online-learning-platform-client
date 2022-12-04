@@ -8,12 +8,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // toast css link
 import 'react-toastify/dist/ReactToastify.css';
 import UserContext from './contexts/UserContext/UserContext';
+import ThemeContextComponent from './contexts/ThemeContextComponent/ThemeContextComponent';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <UserContext>
-      <App />
-    </UserContext>
+    <ThemeContextComponent>
+      <UserContext>
+        <App />
+      </UserContext>
+    </ThemeContextComponent>
   </React.StrictMode>
 );
 
