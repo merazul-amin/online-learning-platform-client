@@ -5,10 +5,12 @@ import Form from 'react-bootstrap/Form';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import './Register.css';
+import SmallSpinner from '../../SharedPages/Spinner/SmallSpinner';
 const Register = () => {
     const navigate = useNavigate();
     const { createUser, setNameImage } = useContext(AuthContext);
     const [uiError, setUiError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -16,11 +18,13 @@ const Register = () => {
         const photoUrl = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
+        setIsLoading(true);
 
         createUser(email, password)
             .then((userCredential) => {
                 // Signed in 
                 toast.success('Successfully Account Created')
+                setIsLoading(false);
                 setUiError('');
                 navigate('/');
 
@@ -74,7 +78,9 @@ const Register = () => {
                 <p>Have an account? <Link to='/login'>Log In</Link></p>
             </Form.Group>
             <Button variant="primary" type="submit">
-                Register
+                {
+                    isLoading ? <SmallSpinner></SmallSpinner> : 'Register'
+                }
             </Button>
         </Form>
     );
