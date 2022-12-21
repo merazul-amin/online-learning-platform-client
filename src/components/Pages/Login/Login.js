@@ -8,14 +8,17 @@ import { FaGoogle, FaGithub } from "react-icons/fa";
 import { getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import app from '../../../firebase/firebase.init';
 import './Login.css'
+import SmallSpinner from '../../SharedPages/Spinner/SmallSpinner';
 
 const auth = getAuth(app);
 const githubProvider = new GithubAuthProvider();
 const googleProvider = new GoogleAuthProvider();
 
 
+
 const Login = () => {
     const [uiError, setUiError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const { logIn } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -27,13 +30,14 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-
+        setIsLoading(true);
         // log in with email and password
         logIn(email, password)
             .then((userCredential) => {
                 // Signed in 
                 toast.success('Successfully Logged in');
                 setUiError('');
+                setIsLoading(false);
                 navigate(from, { replace: true });
             })
             .catch((error) => {
@@ -49,7 +53,6 @@ const Login = () => {
             .then((result) => {
                 // The signed-in user info.
                 const user = result.user;
-                console.log(user);
                 setUiError('');
                 navigate(from, { replace: true });
             }).catch((error) => {
@@ -92,7 +95,8 @@ const Login = () => {
                 </Form.Group>
 
 
-                <Button style={{ fontSize: '20px' }} className=' w-100 mx-auto d-block' variant="success" type="submit">Log In</Button>
+
+                <Button style={{ fontSize: '20px' }} className=' w-100 mx-auto d-block' variant="success" type="submit">{isLoading ? <SmallSpinner></SmallSpinner> : 'Log In'}</Button>
             </Form>
 
             <div className='w-75 mx-auto mt-3'>
